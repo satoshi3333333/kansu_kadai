@@ -1,0 +1,287 @@
+/* 上部のコンテナ */
+.ue {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    animation: slideHorizontalLoop 20s linear infinite;
+}
+
+/* 下部のコンテナ */
+.shita {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    animation: slideHorizontalReverseLoop 18s linear infinite;
+}
+
+.ue span {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    margin: 30px;
+    background: gold;
+} 
+
+.shita span {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    margin: 30px;
+    background: gold;
+} 
+
+/* ボックスの回転アニメーション */
+#box1 {
+    animation: rotation1 6s linear infinite;
+}
+
+#box2 {
+    animation: rotation2 6s linear infinite;
+}
+
+#box3 {
+    animation: rotation3 6s linear infinite;
+}
+
+/* 各ボックスの回転 */
+@keyframes rotation1 {
+    0% { transform: rotate(0); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes rotation2 {
+    0% { transform: rotateX(0); }
+    100% { transform: rotateX(360deg); }
+}
+
+@keyframes rotation3 {
+    0% { transform: rotateY(0); }
+    100% { transform: rotateY(360deg); }
+}
+
+/* 右にスライドした後に左から再出現 */
+@keyframes slideHorizontalLoop {
+    0% { transform: translateX(-100vw); }
+    100% { transform: translateX(100vw); }
+}
+
+/* 左にスライドした後に右から再出現 */
+@keyframes slideHorizontalReverseLoop {
+    0% { transform: translateX(100vw); }
+    100% { transform: translateX(-100vw); }
+}
+
+
+
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.background {
+    background-image: url('./sushihaikei1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1; /* 背景画像を最背面に配置 */
+}
+
+.center-image {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 画像を正確に中央に配置 */
+    width: 200px; /* 必要に応じてサイズを調整 */
+    height: auto;
+    z-index: 1; /* 中央の画像を背景の上に配置 */
+}
+
+#outputImage {
+    max-width: 100%;
+    height: auto;
+}
+
+
+
+
+#overlay-button {
+  position: absolute;
+  right: 2em;
+  top: 3em;
+  padding: 26px 11px;
+  z-index: 5;
+  cursor: pointer;
+  user-select: none;
+}
+#overlay-button span {
+  height: 4px;
+  width: 35px;
+  border-radius: 2px;
+  background-color: white;
+  position: relative;
+  display: block;
+  transition: all .2s ease-in-out;
+}
+#overlay-button span:before {
+  top: -10px;
+  visibility: visible;
+}
+#overlay-button span:after {
+  top: 10px;
+}
+#overlay-button span:before, #overlay-button span:after {
+  height: 4px;
+  width: 35px;
+  border-radius: 2px;
+  background-color: white;
+  position: absolute;
+  content: "";
+  transition: all .2s ease-in-out;
+}
+#overlay-button:hover span, #overlay-button:hover span:before, #overlay-button:hover span:after {
+  background: #fff;
+}
+
+input[type=checkbox] {
+  display: none; 
+  
+}
+
+input[type=checkbox]:checked ~ #overlay {
+  visibility: visible; 
+}
+
+input[type=checkbox]:checked ~ #overlay-button:hover span, input[type=checkbox]:checked ~ #overlay-button span {
+  background: transparent;
+  
+  
+}
+input[type=checkbox]:checked ~ #overlay-button span:before {
+  transform: rotate(45deg) translate(7px, 7px);
+
+}
+input[type=checkbox]:checked ~ #overlay-button span:after {
+  transform: rotate(-45deg) translate(7px, -7px);
+
+
+}
+
+#overlay {
+  height: 100vh;
+  width: 100vw;
+  background: rgba(236, 100, 81, 0.2);
+  z-index: 9999;
+  visibility: hidden;
+  position: fixed;
+}
+/* #overlay.active {
+
+} */
+#overlay ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  height: 100vh;
+  padding-left: 0;
+  list-style-type: none;
+}
+#overlay ul li {
+  padding: 1em;
+}
+#overlay ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.5em;
+}
+#overlay ul li a:hover {
+  color: #000!important;
+}
+
+
+.uni img {
+    width: 50%; /* 必要に応じてサイズを調整 */
+    max-width: 220px;
+    height: auto;
+    position: relative;
+    z-index: 10; /* 最前面に表示 */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 少し影を追加 */
+    cursor: pointer; /* クリック可能なカーソルにする */
+    margin: 20px auto; /* 画像を中央に配置 */
+    display: block; /* ブロック要素として表示 */
+    margin-top: 150px;
+}
+
+.djing img {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    width: 1000px !important; /* サイズを強制的に変更 */
+    max-width: 1000px !important; /* 最大幅も指定 */
+    height: auto;
+    z-index: 20;
+}
+
+/* .center-image {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 画像を正確に中央に配置 */
+    /* width: 1000px; 必要に応じてサイズを調整
+    height: auto;
+    z-index: 1; 中央の画像を背景の上に配置 */
+/* } */ 
+
+.turntable img {
+    width: 50%; /* 必要に応じてサイズを調整 */
+    max-width: 400px;
+    height: auto;
+    position: relative;
+    z-index: 10; /* 最前面に表示 */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 少し影を追加 */
+    cursor: pointer; /* クリック可能なカーソルにする */
+    /* margin: 20px auto; 画像を中央に配置 */
+    display: block; /* ブロック要素として表示 */
+    margin-top: 300px;
+}
+
+
+
+
+
+
+
+.slider-container {
+    margin-bottom: 10px;
+}
+label {
+    display: inline-block;
+    width: 60px;
+}
+
+
+/* .controls {
+    position: absolute;
+    top: 8%;
+    left: 80%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10; 背景より前面に表示
+} */
